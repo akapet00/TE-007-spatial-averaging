@@ -1,10 +1,4 @@
 import numpy as np
-try:
-    import open3d as o3d
-except ModuleNotFoundError as e:
-    print(e, 'install it before proceeding', sep=', ')
-else:
-	o3d.utility.set_verbosity_level(o3d.utility.VerbosityLevel(0))
 from scipy import spatial
 
 
@@ -128,6 +122,12 @@ def orient_normals(points, normals, k):
     numpy.ndarray
         Oriented normals.
     """
+    try:
+        import open3d as o3d
+    except ModuleNotFoundError as e:
+        print(e, 'install it before proceeding', sep=', ')
+    else:
+    	o3d.utility.set_verbosity_level(o3d.utility.VerbosityLevel(3))
     pcd = o3d.geometry.PointCloud()
     pcd.points = o3d.utility.Vector3dVector(points)
     pcd.normals = o3d.utility.Vector3dVector(normals)
